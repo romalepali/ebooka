@@ -1,0 +1,18 @@
+a {
+    text-decoration: none;
+}
+
+table {
+    width: 99%;
+}
+
+table tr th {
+    padding: 10px 0px;
+    background-color: rgb(0, 94, 201);
+    color: white;
+}
+
+table tr td {
+    padding: 10px 0px;
+    background-color: whitesmoke;
+}

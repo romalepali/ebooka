@@ -1,0 +1,20 @@
+.options {
+    position: relative;
+    margin: auto;
+    width: 99%;
+    margin-bottom: 5px;
+    padding: 20px 0px;
+    background-color: whitesmoke;
+}
+
+.options:hover {
+    background-color: rgb(0, 94, 201);
+}
+
+a .options {
+    color: black;
+}
+
+a .options:hover {
+    color: white;
+}
