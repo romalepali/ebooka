@@ -2,7 +2,7 @@
     <body>
         <div class="right">
             <form action="search.php" method="POST">
-                <input name="search" type="search" placeholder="search an ebook" style="position:relative; margin: 5px auto; width:99%; height:35px;padding:10px; border:none;" required>
+                <input name="search" type="search" placeholder="search an ebook" style="text-align:center;position:relative; margin: 5px auto; width:99%; height:35px;padding:10px; border:none;" required>
                 <button name="submit" type="submit" style="position:relative; width:60px; height:35px; background-color:white; margin:auto; border:none;">search</button>
             </form>
         </div>

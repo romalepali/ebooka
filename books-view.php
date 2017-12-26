@@ -56,7 +56,7 @@
                         <div class="main">
                             <h1 style="text-align:center;"><?php echo $fetched_row[1];?></h1>
                             <h4 style="text-align:center;"><?php echo $fetched_row[3];?></h4>
-                            <iframe style="width:90%;height:500px;border:none;margin:20px;" src="views/books/<?php echo $fetched_row[5];?>"></iframe>
+                            <iframe style="box-shadow:0px 0px 5px;width:90%;height:500px;border:none;margin:20px;" src="views/books/<?php echo $fetched_row[5];?>"></iframe>
                         </div>
                         <?php include ('include/recent2.php');?>
                     </div>

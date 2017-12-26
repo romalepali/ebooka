@@ -71,3 +71,8 @@ function update_uname(id) {
         window.location.href='profile-cu.php?user_id='+id;
     }
 }
+
+function profile(id)
+{
+    window.location.href='profile.php?user_id='+id;
+}

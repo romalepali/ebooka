@@ -4,6 +4,21 @@
 
     if(isset($_GET['dbook_id']))
     {
+        $del_query="SELECT * FROM books WHERE book_id=".$_GET['dbook_id'];
+        $result_set2=mysqli_query($con,$del_query);
+        if(mysqli_num_rows($result_set2)>0){
+            $fetched=mysqli_fetch_array($result_set2);
+            $book = $fetched[5];
+            $bookdir = "books";
+            unlink($bookdir."/".$book);
+
+            $cover = $fetched[6];
+            if($cover != "default_cover.jpg"){
+                $coverdir = "covers";
+                unlink($coverdir."/".$cover);
+            }
+        }
+
         $sql_query="DELETE FROM books WHERE book_id=".$_GET['dbook_id'];
         if(mysqli_query($con,$sql_query)){
             ?>
@@ -74,7 +89,7 @@
                             <div id="bydate" style="margin: 20px auto; width:100%; padding:5px;">
                                 <div style="overflow-y:scroll; height:393px; background-color:whitesmoke;box-shadow: 0px 0px 5px;">
                                     <?php
-                                        $sql_query="SELECT a.*,b.category_name FROM books a INNER JOIN category b ON a.book_category_id=b.category_id GROUP BY book_date DESC";
+                                        $sql_query="SELECT a.*,b.category_name FROM books a INNER JOIN category b ON a.book_category_id=b.category_id WHERE a.user_id=".$_SESSION['user_id']." GROUP BY book_date DESC";
                                         $result_set=mysqli_query($con,$sql_query);
                                         if(mysqli_num_rows($result_set)>0)
                                         {
@@ -104,7 +119,7 @@
                                         }
                                     ?>
                                 </div>
-                                <button style="margin-top:20px; height:40px; padding:0px 20px; background-color:rgb(0, 94, 201); color:white; border:none" onclick="javascript: story_new()">new</button>
+                                <button style="margin-top:20px; height:40px; padding:0px 20px; background-color:rgb(0, 94, 201); color:white; border:none" onclick="javascript: book_new()">new</button>
                             </div>
                         </div>
                         <?php include ('include/recent2.php');?>

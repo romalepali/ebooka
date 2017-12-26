@@ -14,8 +14,9 @@ function updateuser_id(id)
 }
 function viewprof_id(id)
 {
-    window.location.href='admin-profile.php?viewprof_id='+id;
+    window.location.href='profile.php?viewprof_id='+id;
 }
+
 function logout()
 {
     if(confirm('Are you sure you want to logout?'))

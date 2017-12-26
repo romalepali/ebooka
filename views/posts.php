@@ -74,7 +74,7 @@
                             <div id="bydate" style="margin: 20px auto; width:100%; padding:5px;">
                                 <div style="overflow-y:scroll; height:393px; background-color:whitesmoke;box-shadow: 0px 0px 5px;">
                                     <?php
-                                        $sql_query="SELECT a.*,b.category_name FROM posts a INNER JOIN category b ON a.post_category_id=b.category_id GROUP BY post_date DESC";
+                                        $sql_query="SELECT a.*,b.category_name FROM posts a INNER JOIN category b ON a.post_category_id=b.category_id WHERE a.user_id=".$_SESSION['user_id']." GROUP BY post_date DESC";
                                         $result_set=mysqli_query($con,$sql_query);
                                         if(mysqli_num_rows($result_set)>0)
                                         {

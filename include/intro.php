@@ -47,10 +47,17 @@
                 <button type="submit" name="submit" style="padding:10px;background-color:rgb(0, 94, 201);color:white;font-size:18px;border:none;">search</button><br><br>
             </form>
 
-            <h1>eBooks & eStories</h1>
             <?php
                 $sql_query="SELECT a.*,b.category_name FROM books a INNER JOIN category b ON a.book_category_id=b.category_id WHERE upload_type='Public' GROUP BY book_date DESC";
                 $result_set=mysqli_query($con,$sql_query);
+                
+                $sql_query2="SELECT a.*,b.category_name FROM posts a INNER JOIN category b ON a.post_category_id=b.category_id  WHERE post_type='Public' GROUP BY post_date DESC";
+                $result_set2=mysqli_query($con,$sql_query2);
+
+                if(mysqli_num_rows($result_set)>0||mysqli_num_rows($result_set2)>0){
+                    echo "<h1>eBooks & eStories</h1>";
+                }
+
                 if(mysqli_num_rows($result_set)>0)
                 {
                     $count_book=0;
@@ -73,8 +80,6 @@
                     }
                 }
 
-                $sql_query2="SELECT a.*,b.category_name FROM posts a INNER JOIN category b ON a.post_category_id=b.category_id  WHERE post_type='Public' GROUP BY post_date DESC";
-                $result_set2=mysqli_query($con,$sql_query2);
                 if(mysqli_num_rows($result_set2)>0)
                 {
                     $count_post=0;

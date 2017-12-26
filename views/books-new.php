@@ -7,6 +7,7 @@
         $book_title = $_POST['book_title'];
         $book_description = $_POST['book_description'];
         $book_author = $_POST['book_author'];
+        $user_id = $_SESSION['user_id'];
         $book_category_id = $_POST['book_category_id'];
         $upload_type = $_POST['upload_type'];
 
@@ -23,7 +24,7 @@
 
         if(move_uploaded_file($file_loc,$folder_file.$final_file))
         {
-            $sql_query = "INSERT INTO books (book_title,book_description,book_author,book_category_id,book_file,book_cover,book_date,upload_type) VALUES ('$book_title','$book_description','$book_author','$book_category_id','$final_file','$final_cover',NOW(),'$upload_type')";
+            $sql_query = "INSERT INTO books (book_title,book_description,book_author,book_category_id,book_file,book_cover,book_date,upload_type,user_id) VALUES ('$book_title','$book_description','$book_author','$book_category_id','$final_file','$final_cover',NOW(),'$upload_type','$user_id')";
             if(mysqli_query($con,$sql_query))
             {
                 ?>

@@ -30,10 +30,11 @@
         $book_title = $_POST['book_title'];
         $book_description = $_POST['book_description'];
         $book_author = $_POST['book_author'];
+        $user_id = $_SESSION['user_id'];
         $book_category_id = $_POST['book_category_id'];
         $upload_type = $_POST['upload_type'];
 
-        $sql_query = "UPDATE books SET book_title='$book_title',book_description='$book_description',book_author='$book_author',book_category_id='$book_category_id',book_date=NOW(),upload_type='$upload_type' WHERE book_id=".$_GET['ubook_id'];
+        $sql_query = "UPDATE books SET book_title='$book_title',book_description='$book_description',book_author='$book_author',book_category_id='$book_category_id',book_date=NOW(),upload_type='$upload_type',user_id='$user_id' WHERE book_id=".$_GET['ubook_id'];
         if(mysqli_query($con,$sql_query))
         {
             ?>

@@ -12,7 +12,7 @@
         </div>
         <div id="mySidenav1" class="sidenav">
             <a href="javascript: void(0)" class="closebtn" onclick="closeNav1()">&times;</a>
-            <a href="profile.php">Profile</a>
+            <a href="javascript: void(0)" onclick="profile('<?php echo $_SESSION['user_id'];?>')">Profile</a>
             <a href="javascript: void(0)" onclick="openNav1_2()">Settings</a>
             <a href="javascript: void(0)" onclick="logout()">Logout</a>
         </div>

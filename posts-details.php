@@ -68,7 +68,7 @@
                                     <b>Title:</b> <?php echo $fetched_row[1];?>
                                 </div>
                                 <div class="dtails">
-                                    <b>Author:</b> <?php echo $fetched_row[6];?>
+                                    <b>Author:</b> <?php echo $fetched_row[6]?>
                                 </div>
                                 <div class="dtails">
                                     <b>Description:</b> <?php echo $fetched_row[8];?>

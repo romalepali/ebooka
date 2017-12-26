@@ -63,7 +63,7 @@
         <div id="mySidenav2" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
             <div style="width:40%; position:relative; margin:auto;">
-                <h1 style="color:white; text-align:center;">SIGN UP</h1>
+                <img src="images/logo.png" width="150px">
                 <form style="color:white; text-align:center;" method="POST">
                     <input type="text" name="user_uname" placeholder="enter username" required><br>
                     <input type="password" name="pword" placeholder="enter password" required><br>

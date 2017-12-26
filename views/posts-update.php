@@ -30,11 +30,12 @@
         $post_title = $_POST['post_title'];
         $post_text = $_POST['post_text'];
         $post_description = $_POST['post_description'];
+        $user_id = $_SESSION['user_id'];
         $post_author = $_SESSION['user_uname'];
         $post_category_id = $_POST['post_category_id'];
         $post_type = $_POST['post_type'];
 
-        $sql_query = "UPDATE posts SET post_title='$post_title',post_text='$post_text',post_author='$post_author',post_category_id='$post_category_id',post_date=NOW(),post_type='$post_type',post_description='$post_description' WHERE post_id=".$_GET['ustory_id'];
+        $sql_query = "UPDATE posts SET post_title='$post_title',post_text='$post_text',post_author='$post_author',post_category_id='$post_category_id',post_date=NOW(),post_type='$post_type',post_description='$post_description',user_id='$user_id' WHERE post_id=".$_GET['ustory_id'];
         if(mysqli_query($con,$sql_query))
         {
             ?>

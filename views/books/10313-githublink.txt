@@ -1,2 +1,0 @@
-https://github.com/romalepali/AES-Portal (Repository)
-https://codeload.github.com/romalepali/AES-Portal/zip/master (Download)
