@@ -86,7 +86,7 @@
                                     <input type="text" name="book_author" placeholder="book author" value="<?php echo $fetched_row[3];?>" required>
                                     <select style="margin-bottom:10px;width:100%;height:35px;" name="book_category_id" required>
                                         <?php
-                                            $sql_query="SELECT category_id, category_name FROM category";
+                                            $sql_query="SELECT category_id, category_name FROM category WHERE category_id!=1";
                                             $result_set=mysqli_query($con,$sql_query);
                                             
                                             if(mysqli_num_rows($result_set)>0)

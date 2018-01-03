@@ -87,7 +87,7 @@
                                     <textarea name="post_text" placeholder="write your story here" style="width:100%;height:262px;margin-bottom:10px;"><?php echo $fetched_row[2];?></textarea><br>
                                     <select style="margin-bottom:10px;width:100%;height:35px;" name="post_category_id" required>
                                         <?php
-                                            $sql_query="SELECT category_id, category_name FROM category";
+                                            $sql_query="SELECT category_id, category_name FROM category WHERE category_id!=1";
                                             $result_set=mysqli_query($con,$sql_query);
                                             
                                             if(mysqli_num_rows($result_set)>0)

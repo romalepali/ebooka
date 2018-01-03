@@ -65,7 +65,7 @@
                                     <select style="margin-bottom:10px;width:100%;height:35px;" name="post_category_id" required>
                                         <option value="">Story Category</option>
                                         <?php
-                                            $sql_query="SELECT category_id, category_name FROM category";
+                                            $sql_query="SELECT category_id, category_name FROM category WHERE category_id!=1";
                                             $result_set=mysqli_query($con,$sql_query);
                                             
                                             if(mysqli_num_rows($result_set)>0)

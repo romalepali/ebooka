@@ -15,7 +15,7 @@
     }
 
     if(isset($_GET['vdbook_id'])){
-        $sql_query="SELECT * FROM books WHERE book_id=".$_GET['vdbook_id'];
+        $sql_query="SELECT a.*,b.* FROM books a INNER JOIN category b ON a.book_category_id=b.category_id WHERE book_id=".$_GET['vdbook_id'];
         $result_set=mysqli_query($con,$sql_query);
         if(mysqli_num_rows($result_set)>0){
             $fetched_row=mysqli_fetch_array($result_set);
@@ -67,6 +67,7 @@
                             <div style="position:relative;width:360px;margin:auto;margin-bottom:10px;text-align:left;">
                                 <b>Title:</b> <?php echo $fetched_row[1];?><br>
                                 <b>Author:</b> <?php echo $fetched_row[3];?><br>
+                                <b>Category:</b> <?php echo $fetched_row[11];?><br>
                                 <b>Description:</b> <?php echo $fetched_row[2];?>
                             </div>
                         </div>

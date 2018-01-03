@@ -15,7 +15,7 @@
     }
 
     if(isset($_GET['vdstory_id'])){
-        $sql_query="SELECT * FROM posts WHERE post_id=".$_GET['vdstory_id'];
+        $sql_query="SELECT a.*,b.* FROM posts a INNER JOIN category b ON a.post_category_id=b.category_id WHERE post_id=".$_GET['vdstory_id'];
         $result_set=mysqli_query($con,$sql_query);
         if(mysqli_num_rows($result_set)>0){
             $fetched_row=mysqli_fetch_array($result_set);
@@ -67,6 +67,7 @@
                             <div style="position:relative;width:360px;margin:auto;margin-bottom:10px;text-align:left;">
                                 <b>Title:</b> <?php echo $fetched_row[1];?><br>
                                 <b>Author:</b> <?php echo $fetched_row[6]?><br>
+                                <b>Category:</b> <?php echo $fetched_row[11];?><br>
                                 <b>Description:</b> <?php echo $fetched_row[8];?>
                             </div>
                         </div>
