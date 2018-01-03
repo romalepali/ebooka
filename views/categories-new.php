@@ -16,7 +16,7 @@
         {
             ?>
                 <script type="text/javascript">
-                    alert('Successfully added a new story!');
+                    alert('Successfully added a category!');
                         window.location.href='categories.php';
                 </script>
             <?php

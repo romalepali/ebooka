@@ -35,6 +35,18 @@
             }
         }
 
+        $del_queryc="SELECT * FROM category WHERE category_id=".$_GET['dcategory_id'];
+        $result_set4=mysqli_query($con,$del_queryc);
+        if(mysqli_num_rows($result_set4)>0){
+            $fetched3=mysqli_fetch_array($result_set4);
+
+            $cover3 = $fetched3[2];
+            if($cover3 != "default_cover.jpg"){
+                $coverdir3 = "covers";
+                unlink($coverdir3."/".$cover3);
+            }
+        }
+
         $sql_queryb="DELETE FROM books WHERE book_category_id=".$_GET['dcategory_id'];
         $sql_queryp="DELETE FROM posts WHERE post_category_id=".$_GET['dcategory_id'];
 
