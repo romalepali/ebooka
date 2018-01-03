@@ -6,10 +6,10 @@
     unset($_SESSION['sortby']);
     unset($_SESSION['orderby']);
 
-    if(isset($_GET['dbook_id']))
+    if(isset($_GET['dcategory_id']))
     {
-        $del_query="SELECT * FROM books WHERE book_id=".$_GET['dbook_id'];
-        $result_set2=mysqli_query($con,$del_query);
+        $del_queryb="SELECT * FROM books WHERE book_category_id=".$_GET['dcategory_id'];
+        $result_set2=mysqli_query($con,$del_queryb);
         if(mysqli_num_rows($result_set2)>0){
             $fetched=mysqli_fetch_array($result_set2);
             $book = $fetched[5];
@@ -23,19 +23,34 @@
             }
         }
 
-        $sql_query="DELETE FROM books WHERE book_id=".$_GET['dbook_id'];
-        if(mysqli_query($con,$sql_query)){
+        $del_queryp="SELECT * FROM posts WHERE post_category_id=".$_GET['dcategory_id'];
+        $result_set3=mysqli_query($con,$del_queryp);
+        if(mysqli_num_rows($result_set3)>0){
+            $fetched2=mysqli_fetch_array($result_set3);
+
+            $cover2 = $fetched2[7];
+            if($cover2 != "default_cover.jpg"){
+                $coverdir2 = "covers";
+                unlink($coverdir2."/".$cover2);
+            }
+        }
+
+        $sql_queryb="DELETE FROM books WHERE book_category_id=".$_GET['dcategory_id'];
+        $sql_queryp="DELETE FROM posts WHERE post_category_id=".$_GET['dcategory_id'];
+
+        $sql_query="DELETE FROM category WHERE category_id=".$_GET['dcategory_id'];
+        if(mysqli_query($con,$sql_query)&&mysqli_query($con,$sql_queryb)&&mysqli_query($con,$sql_queryp)){
             ?>
                 <script type="text/javascript">
-                    alert('Successfully deleted your book!');
-                    window.location.href='books.php';
+                    alert('Successfully deleted a category!');
+                    window.location.href='categories.php';
                 </script>
             <?php
         }
         else{
             ?>
                 <script type="text/javascript">
-                    alert('Error occured while deleting your book!');
+                    alert('Error occured while deleting a category!');
                 </script>
             <?php
         }
@@ -49,8 +64,8 @@
         <link rel="shortcut icon" href="../images/logo.png"/>
         <script src="../js/loader.js"></script>
         <script src="../js/account.js"></script>
-        <script src="../js/books.js"></script>
-        <title>Books</title>
+        <script src="../js/categories.js"></script>
+        <title>Categories</title>
     </head>
 
     <style>
@@ -89,11 +104,11 @@
                     <?php include ('include/menu.php');?>
                     <div style="overflow:hidden;">
                         <div class="main">
-                            <h1 style="text-align:center;">All Books</h1>
+                            <h1 style="text-align:center;">All Categories</h1>
                             <div id="bydate" style="margin: 20px auto; width:100%; padding:5px;">
                                 <div style="overflow-y:scroll; height:393px; background-color:whitesmoke;box-shadow: 0px 0px 5px;">
                                     <?php
-                                        $sql_query="SELECT a.*,b.category_name FROM books a INNER JOIN category b ON a.book_category_id=b.category_id WHERE a.user_id=".$_SESSION['user_id']." GROUP BY book_date DESC";
+                                        $sql_query="SELECT * FROM category WHERE category_id!=1 GROUP BY category_name ASC";
                                         $result_set=mysqli_query($con,$sql_query);
                                         if(mysqli_num_rows($result_set)>0)
                                         {
@@ -101,14 +116,13 @@
                                             {
                                                 ?>
                                                     <div class="bookcover">
-                                                        <a href="javascript: void(0)" onclick="javascript: ucbook_id('<?php echo $row[0];?>')">
-                                                            <img class="bookimage" src="covers/<?php echo $row[6];?>" style="height:180px;width:130px;">
+                                                        <a href="javascript: void(0)" onclick="javascript: uccategory_id('<?php echo $row[0];?>')">
+                                                            <img class="bookimage" src="covers/<?php echo $row[2];?>" style="height:180px;width:130px;">
                                                         </a>
                                                         <div class="details">
                                                             <?php echo $row[1];?>
                                                         </div>
-                                                        <button class="apbut" onclick="javascript: vbook_id('<?php echo $row[0];?>')">view</button>
-                                                        <button class="apbut" onclick="javascript: ubook_id('<?php echo $row[0];?>')">update</button>
+                                                        <button class="apbut" onclick="javascript: ucategory_id('<?php echo $row[0];?>')">update</button>
                                                     </div>
                                                 <?php
                                             }
@@ -117,13 +131,13 @@
                                           {
                                             ?>
                                                 <div style="background-color:whitesmoke;padding:25px;">
-                                                    No posted books found!
+                                                    No posted categories found!
                                                 </div>
                                             <?php
                                         }
                                     ?>
                                 </div>
-                                <button style="margin-top:20px; height:40px; padding:0px 20px; background-color:rgb(0, 94, 201); color:white; border:none" onclick="javascript: book_new()">new</button>
+                                <button style="margin-top:20px; height:40px; padding:0px 20px; background-color:rgb(0, 94, 201); color:white; border:none" onclick="javascript: category_new()">new</button>
                             </div>
                         </div>
                         <?php include ('include/recent2.php');?>

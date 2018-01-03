@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <?php
     include ('include/verify-logged.php');
+    unset($_SESSION['search']);
+    unset($_SESSION['category']);
+    unset($_SESSION['sortby']);
+    unset($_SESSION['orderby']);
 
     if(isset($_GET['dstory_id']))
     {
+        $del_query="SELECT * FROM posts WHERE post_id=".$_GET['dstory_id'];
+        $result_set2=mysqli_query($con,$del_query);
+        if(mysqli_num_rows($result_set2)>0){
+            $fetched=mysqli_fetch_array($result_set2);
+
+            $cover = $fetched[7];
+            if($cover != "default_cover.jpg"){
+                $coverdir = "covers";
+                unlink($coverdir."/".$cover);
+            }
+        }
+
         $sql_query="DELETE FROM posts WHERE post_id=".$_GET['dstory_id'];
         if(mysqli_query($con,$sql_query)){
             ?>

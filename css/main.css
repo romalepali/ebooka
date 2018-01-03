@@ -1,7 +1,8 @@
 /*Web Design*/
 body {
-    background-color: gray;  
-    margin: auto; 
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 * {
@@ -88,6 +89,7 @@ body {
 
 #main {
     transition: margin-left .5s;
+    background-color: rgba(255, 255, 255, .5);
 }
 
 @media screen and (max-height: 450px) {
@@ -107,4 +109,5 @@ input[type=text], input[type=password] {
 
 input[type=search]{
     border: 1px solid rgb(0, 94, 201);
+    border-radius: 10px;
 }

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
     include ('include/verify-logged.php');
+    unset($_SESSION['search']);
+    unset($_SESSION['category']);
+    unset($_SESSION['sortby']);
+    unset($_SESSION['orderby']);
 
     if(!isset($_GET['vdbook_id'])||$_GET['vdbook_id']==NULL){
         ?>
@@ -38,9 +42,6 @@
     </head>
 
     <style>
-        .dtails {
-            text-align:left;
-        }
         .apbut {
             color:white;
             background-color:rgb(0, 94, 201);
@@ -59,20 +60,14 @@
                     <?php include ('include/menu.php');?>
                     <div style="overflow:hidden;">
                         <div class="main">
-                            <div style="float:left;margin:10px;">
-                                <img class="bookimage" src="covers/<?php echo $fetched_row[6];?>" style="box-shadow:0px 0px 5px;height:360px;width:260px;"><br>
+                            <div style="position:relative;margin:10px;">
+                                <img class="bookimage" src="covers/<?php echo $fetched_row[6];?>" style="box-shadow:0px 0px 5px;height:480px;width:360px;"><br>
                                 <button class="apbut" onclick="javascript: vbook_id('<?php echo $fetched_row[0];?>')">view</button>
                             </div>
-                            <div style="float:left;margin:10px;">
-                                <div class="dtails">
-                                    <b>Title:</b> <?php echo $fetched_row[1];?>
-                                </div>
-                                <div class="dtails">
-                                    <b>Author:</b> <?php echo $fetched_row[3];?>
-                                </div>
-                                <div class="dtails">
-                                    <b>Description:</b> <?php echo $fetched_row[2];?>
-                                </div>
+                            <div style="position:relative;width:360px;margin:auto;margin-bottom:10px;text-align:left;">
+                                <b>Title:</b> <?php echo $fetched_row[1];?><br>
+                                <b>Author:</b> <?php echo $fetched_row[3];?><br>
+                                <b>Description:</b> <?php echo $fetched_row[2];?>
                             </div>
                         </div>
                         <?php include ('include/recent2.php');?>

@@ -23,6 +23,7 @@
 		while($row=mysqli_fetch_row($result)){
 			$_SESSION['user_id']=$row[0];
 			$_SESSION['user_uname']=$row[1];
+			$_SESSION['user_type']=$row[9];
 		}
         echo "<script>window.location='views/';</script>";
 	}

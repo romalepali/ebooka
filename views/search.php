@@ -22,7 +22,7 @@
                     <?php include ('include/menu.php');?>
                     <div style="overflow:auto">
                         <?php include ('include/search-results.php');?>
-                        <?php include ('include/recent.php');?>
+                        <?php include ('include/recent2.php');?>
                     </div>
                     <?php include ('include/footer.php');?>
                 </div>

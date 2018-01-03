@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
     include ('include/verify-notlogged.php');
+    unset($_SESSION['search']);
+    unset($_SESSION['category']);
+    unset($_SESSION['sortby']);
+    unset($_SESSION['orderby']);
 
     if(!isset($_GET['vstory_id'])||$_GET['vstory_id']==NULL){
         ?>
@@ -52,14 +56,14 @@
                 <div id="main">
                     <?php include ('include/menu.php');?>
                     <div style="overflow:hidden;">
-                        <div class="main">
+                        <div class="main" style="width:100%;">
                             <h1 style="text-align:center;"><?php echo $fetched_row[1];?></h1>
                             <h4 style="text-align:center;"><?php echo $fetched_row[6];?></h4>
                             <div style="overflow-y:auto; box-shadow:0px 0px 5px; height:450px; padding:10px; margin-bottom:33px; text-align:justify;">
                                 <?php echo $fetched_row[2];?>
                             </div>
                         </div>
-                        <?php include ('include/recent2.php');?>
+                        <?php include ('include/searchbar.php');?>
                     </div>
                     <?php include ('include/footer.php');?>
                 </div>

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
     include ('include/verify-logged.php');
+    unset($_SESSION['search']);
+    unset($_SESSION['category']);
+    unset($_SESSION['sortby']);
+    unset($_SESSION['orderby']);
 
     if(isset($_POST['createbtn']))
     {

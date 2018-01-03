@@ -25,6 +25,11 @@
             <a href="javascript: void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
             <a href="javascript: void(0)" onclick="openNav2_1()">Books</a>
             <a href="javascript: void(0)" onclick="openNav2_2()">Stories</a>
+            <?php
+                if($_SESSION['user_type']=='Administrator'){
+                    ?><a href="javascript: void(0)" onclick="openNav2_3()">Category</a><?php
+                }
+            ?>
         </div>
         <div id="mySidenav2_1" class="sidenav">
             <a href="javascript: void(0)" class="closebtn" onclick="closeNav2_1()">&times;</a>
@@ -35,6 +40,11 @@
             <a href="javascript: void(0)" class="closebtn" onclick="closeNav2_2()">&times;</a>
             <a href="posts.php">Browse</a>
             <a href="posts-new.php">Add New</a>
+        </div>
+        <div id="mySidenav2_3" class="sidenav">
+            <a href="javascript: void(0)" class="closebtn" onclick="closeNav2_3()">&times;</a>
+            <a href="categories.php">Browse</a>
+            <a href="categories-new.php">Add New</a>
         </div>
         <div id="mySidenav3" class="sidenav">
             <a href="javascript: void(0)" class="closebtn" onclick="closeNav3()">&times;</a>

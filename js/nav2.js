@@ -40,6 +40,13 @@ function closeNav2_2() {
     document.getElementById("mySidenav2_2").style.width = "0";
 }
 
+function openNav2_3() {
+    document.getElementById("mySidenav2_3").style.width = "250px";
+}
+function closeNav2_3() {
+    document.getElementById("mySidenav2_3").style.width = "0";
+}
+
 function openNav3() {
     document.getElementById("mySidenav3").style.width = "250px";
 }

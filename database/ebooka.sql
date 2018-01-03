@@ -25,9 +25,10 @@ DROP TABLE IF EXISTS `activities`;
 CREATE TABLE `activities` (
   `activity_id` int(11) NOT NULL AUTO_INCREMENT,
   `activity` longtext NOT NULL,
-  `activity_date` datetime NOT NULL,
+  `activity_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`activity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +37,6 @@ CREATE TABLE `activities` (
 
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
-INSERT INTO `activities` VALUES (1,'Nag Update koe','2017-12-12 08:32:53');
 /*!40000 ALTER TABLE `activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +59,7 @@ CREATE TABLE `books` (
   `upload_type` set('Private','Public') NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (24,'O Holy Night','O Holy Night','Rolly',1,'83611-o_holy_night-2.pdf','default_cover.jpg','2017-12-26 18:15:46','Public',1);
+INSERT INTO `books` VALUES (37,'OK','OK','OK',7,'61013-ok','default_cover.jpg','2018-01-03 13:02:57','Public',1),(38,'Hey','Hey','Hey',7,'27019-hey','default_cover.jpg','2018-01-03 13:35:08','Public',1),(39,'OAM','OAM','OAM',7,'74998-oam','default_cover.jpg','2018-01-03 13:36:22','Public',1);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,10 +82,10 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(128) NOT NULL,
-  `category_description` text NOT NULL,
   `category_cover` text NOT NULL,
+  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'Fiction','Fiction na Book','fiction.jpg');
+INSERT INTO `category` VALUES (1,'All Categories','default_cover.jpg','2018-01-03 06:27:06'),(7,'Fantasy','default_cover.jpg','2018-01-03 05:01:36');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `posts` (
   `post_description` text NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,6 +146,7 @@ CREATE TABLE `users` (
   `user_gender` set('Female','Male') NOT NULL,
   `user_profile` varchar(64) NOT NULL,
   `user_date_created` datetime NOT NULL,
+  `user_type` set('Administrator','Standard') NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -156,7 +157,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'romalepali','bc0e8f1ccdda2784055034726babd660','Rolly','Lee','Linao','Male','73206-img_1956.png','2017-12-10 11:11:42'),(2,'pinky','daea4d0b55ef6c16f04b8997a51e7e6a','Pinky','Bucas','Corpin','Female','profile.jpg','2017-12-12 08:47:40'),(3,'dannah','0d8dbb27156dfb455835b71d3cfaacc8','Dannah','Rose','Sanda','Female','profile.jpg','2017-12-15 18:08:00');
+INSERT INTO `users` VALUES (1,'romalepali','bc0e8f1ccdda2784055034726babd660','Rolly','Lee','Linao','Male','73206-img_1956.png','2017-12-10 11:11:42','Administrator'),(2,'pinky','daea4d0b55ef6c16f04b8997a51e7e6a','Pinky','Bucas','Corpin','Female','profile.jpg','2017-12-12 08:47:40','Standard'),(3,'dannah','0d8dbb27156dfb455835b71d3cfaacc8','Dannah','Rose','Sanda','Female','profile.jpg','2017-12-15 18:08:00','Standard');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -169,4 +170,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-26 18:21:46
+-- Dump completed on 2018-01-03 21:36:16

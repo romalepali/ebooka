@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
     include ('include/verify-logged.php');
+    unset($_SESSION['search']);
+    unset($_SESSION['category']);
+    unset($_SESSION['sortby']);
+    unset($_SESSION['orderby']);
 
     if(isset($_POST['uploadbtn']))
     {
@@ -11,7 +15,7 @@
         $book_category_id = $_POST['book_category_id'];
         $upload_type = $_POST['upload_type'];
 
-        $file = rand(1000,100000)."-".$_FILES['book_file']['name'];
+        $file = rand(1000,100000)."-".$book_title;
         $file_loc = $_FILES['book_file']['tmp_name'];
         $file_size = $_FILES['book_file']['size'];
         $file_type = $_FILES['book_file']['type'];

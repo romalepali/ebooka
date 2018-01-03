@@ -1,5 +1,9 @@
 <?php
     include ('include/verify-notlogged.php');
+    unset($_SESSION['search']);
+    unset($_SESSION['category']);
+    unset($_SESSION['sortby']);
+    unset($_SESSION['orderby']);
 ?>
 
 <html>
@@ -22,7 +26,6 @@
                     <?php include ('include/menu.php');?>
                     <div style="overflow:auto">
                         <?php include ('include/intro.php');?>
-                        <?php include ('include/recent.php');?>
                     </div>
                     <?php include ('include/footer.php');?>
                 </div>

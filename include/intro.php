@@ -37,13 +37,47 @@
             width:60px;
             padding:5px 0px;
         }
+        select {
+            width:20%;
+            height:30px;
+            border: 1px solid rgb(0, 94, 201);
+            margin-top:5px;
+            border-radius:10px;
+        }
     </style>
 
     <body>
-        <div class="main">
+        <div class="main" style="width:100%;">
             <img src="images/logo.png" width="150px">
             <form action="search.php" method="POST">
-                <input type="search" name="search" placeholder="search an ebook" style="width:100%;height:50px;padding:5px;text-align:center;font-size:22px;"><br><br>
+                <input type="search" name="search" placeholder="search an ebook" style="width:75%;height:50px;padding:5px;text-align:center;font-size:22px;" required><br>
+                <select name="category" required>
+                    <?php
+                        $sql_query="SELECT category_id, category_name FROM category";
+                        $result_set=mysqli_query($con,$sql_query);                    
+                        if(mysqli_num_rows($result_set)>0)
+                        {
+                            while($row=mysqli_fetch_row($result_set))
+                            {
+                                echo "<option value='$row[0]' >".$row[1]."</option>";
+                            }
+                        }
+                        else
+                        {
+                            ?>
+                                Not Available
+                            <?php
+                        }
+                    ?>
+                </select>
+                <select name="sortby" required>
+                    <option value="atoz">Alphabetical</option>
+                    <option value="date">Date Added</option>
+                </select>
+                <select name="orderby" required>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select><br><br>
                 <button type="submit" name="submit" style="padding:10px;background-color:rgb(0, 94, 201);color:white;font-size:18px;border:none;">search</button><br><br>
             </form>
 

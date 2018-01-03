@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
     include ('include/verify-notlogged.php');
+    unset($_SESSION['search']);
+    unset($_SESSION['category']);
+    unset($_SESSION['sortby']);
+    unset($_SESSION['orderby']);
 
     if(!isset($_GET['vbook_id'])||$_GET['vbook_id']==NULL){
         ?>
@@ -53,12 +57,12 @@
                 <div id="main">
                     <?php include ('include/menu.php');?>
                     <div style="overflow:hidden;">
-                        <div class="main">
+                        <div class="main" style="width:100%;">
                             <h1 style="text-align:center;"><?php echo $fetched_row[1];?></h1>
                             <h4 style="text-align:center;"><?php echo $fetched_row[3];?></h4>
                             <iframe style="box-shadow:0px 0px 5px;width:90%;height:500px;border:none;margin:20px;" src="views/books/<?php echo $fetched_row[5];?>"></iframe>
                         </div>
-                        <?php include ('include/recent2.php');?>
+                        <?php include ('include/searchbar.php');?>
                     </div>
                     <?php include ('include/footer.php');?>
                 </div>

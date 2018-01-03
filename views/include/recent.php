@@ -3,7 +3,7 @@
         <div class="right">
             <h2>Recent Activity</h2>
             <?php
-                $sql_query="SELECT * FROM activities GROUP BY activity_date DESC";
+                $sql_query="SELECT * FROM activities WHERE user_id=".$_SESSION['user_id']." GROUP BY activity_date DESC";
                 $result_set=mysqli_query($con,$sql_query);
                 if(mysqli_num_rows($result_set)>0)
                 {

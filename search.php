@@ -18,11 +18,10 @@
         <div id="loader"></div>
             <div style="display:none;" id="myDiv" class="animate-bottom">
                 <?php include ('include/nav-main.php');?>
-                <div id="main">
+                <div id="main" style="width:100%;">
                     <?php include ('include/menu.php');?>
                     <div style="overflow:auto">
                         <?php include ('include/search-results.php');?>
-                        <?php include ('include/recent.php');?>
                     </div>
                     <?php include ('include/footer.php');?>
                 </div>
