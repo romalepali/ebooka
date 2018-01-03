@@ -47,6 +47,7 @@
         <script src="../js/loader.js"></script>
         <script src="../js/account.js"></script>
         <script src="../js/posts.js"></script>
+        <script src="../js/inpagesearch.js"></script>
         <title>Posts</title>
     </head>
 
@@ -76,6 +77,23 @@
             width:60px;
             padding:5px 0px;
         }
+        #myUL {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        #myInput {
+            background-image: url('../images/search.png');
+            background-position: 10px 12px;
+            background-size:20px;
+            background-repeat: no-repeat;
+            width: 99%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+            text-align:left;
+        }
     </style>
 
     <body style="font-family:Verdana;" onload="myFunction()">
@@ -87,38 +105,43 @@
                     <div style="overflow:hidden;">
                         <div class="main">
                             <h1 style="text-align:center;">All Posts</h1>
-                            <div id="bydate" style="margin: 20px auto; width:100%; padding:5px;">
+                            <input type="text" id="myInput" onkeyup="search()" placeholder="search a story">
+                            <div id="bydate" style="margin:auto; margin-bottom:20px; width:100%; padding:5px;">
                                 <div style="overflow-y:scroll; height:393px; background-color:whitesmoke;box-shadow: 0px 0px 5px;">
-                                    <?php
-                                        $sql_query="SELECT a.*,b.category_name FROM posts a INNER JOIN category b ON a.post_category_id=b.category_id WHERE a.user_id=".$_SESSION['user_id']." GROUP BY post_date DESC";
-                                        $result_set=mysqli_query($con,$sql_query);
-                                        if(mysqli_num_rows($result_set)>0)
-                                        {
-                                            while($row=mysqli_fetch_row($result_set))
+                                    <ul id="myUL">
+                                        <?php
+                                            $sql_query="SELECT a.*,b.category_name FROM posts a INNER JOIN category b ON a.post_category_id=b.category_id WHERE a.user_id=".$_SESSION['user_id']." GROUP BY post_date DESC";
+                                            $result_set=mysqli_query($con,$sql_query);
+                                            if(mysqli_num_rows($result_set)>0)
+                                            {
+                                                while($row=mysqli_fetch_row($result_set))
+                                                {
+                                                    ?>
+                                                        <li>  
+                                                            <div class="bookcover">
+                                                                <a href="javascript: void(0)" onclick="javascript: ucstory_id('<?php echo $row[0];?>')">
+                                                                    <img class="bookimage" src="covers/<?php echo $row[7];?>" style="height:180px;width:130px;">
+                                                                </a>
+                                                                <div class="details">
+                                                                    <?php echo $row[1];?>
+                                                                </div>
+                                                                <button class="apbut" onclick="javascript: vstory_id('<?php echo $row[0];?>')">view</button>
+                                                                <button class="apbut" onclick="javascript: ustory_id('<?php echo $row[0];?>')">update</button>
+                                                            </div>
+                                                        <li>  
+                                                    <?php
+                                                }
+                                            }
+                                            else
                                             {
                                                 ?>
-                                                    <div class="bookcover">
-                                                        <a href="javascript: void(0)" onclick="javascript: ucstory_id('<?php echo $row[0];?>')">
-                                                            <img class="bookimage" src="covers/<?php echo $row[7];?>" style="height:180px;width:130px;">
-                                                        </a>
-                                                        <div class="details">
-                                                            <?php echo $row[1];?>
-                                                        </div>
-                                                        <button class="apbut" onclick="javascript: vstory_id('<?php echo $row[0];?>')">view</button>
-                                                        <button class="apbut" onclick="javascript: ustory_id('<?php echo $row[0];?>')">update</button>
+                                                    <div style="background-color:whitesmoke;padding:25px;">
+                                                        No posted stories found!
                                                     </div>
                                                 <?php
                                             }
-                                        }
-                                        else
-                                          {
-                                            ?>
-                                                <div style="background-color:whitesmoke;padding:25px;">
-                                                    No posted stories found!
-                                                </div>
-                                            <?php
-                                        }
-                                    ?>
+                                        ?>
+                                    </ul>
                                 </div>
                                 <button style="margin-top:20px; height:40px; padding:0px 20px; background-color:rgb(0, 94, 201); color:white; border:none" onclick="javascript: story_new()">new</button>
                             </div>
