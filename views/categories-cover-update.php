@@ -30,6 +30,18 @@
     }
     if(isset($_POST['updatebtn']))
     {
+        $del_query="SELECT * FROM category WHERE category_id=".$_GET['uccategory_id'];
+        $result_set2=mysqli_query($con,$del_query);
+        if(mysqli_num_rows($result_set2)>0){
+            $fetched=mysqli_fetch_array($result_set2);
+
+            $cover = $fetched[2];
+            if($cover != "default_cover.jpg"){
+                $coverdir = "covers";
+                unlink($coverdir."/".$cover);
+            }
+        }
+
         $cover = rand(1000,100000)."-".$_FILES['category_cover']['name'];
         $cover_loc = $_FILES['category_cover']['tmp_name'];
         $cover_size = $_FILES['category_cover']['size'];

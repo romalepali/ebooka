@@ -30,6 +30,18 @@
     }
     if(isset($_POST['updatebtn']))
     {
+        $del_query="SELECT * FROM books WHERE book_id=".$_GET['ucbook_id'];
+        $result_set2=mysqli_query($con,$del_query);
+        if(mysqli_num_rows($result_set2)>0){
+            $fetched=mysqli_fetch_array($result_set2);
+
+            $cover = $fetched[6];
+            if($cover != "default_cover.jpg"){
+                $coverdir = "covers";
+                unlink($coverdir."/".$cover);
+            }
+        }
+
         $cover = rand(1000,100000)."-".$_FILES['post_cover']['name'];
         $cover_loc = $_FILES['post_cover']['tmp_name'];
         $cover_size = $_FILES['post_cover']['size'];

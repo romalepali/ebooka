@@ -19,11 +19,23 @@
                     window.location.href='index.php';
                 </script>
             <?php
-        }       
+        }
     }
 
     if(isset($_POST['uploadbtn']))
     {
+        $del_query="SELECT * FROM users WHERE user_id=".$_GET['user_id'];
+        $result_set2=mysqli_query($con,$del_query);
+        if(mysqli_num_rows($result_set2)>0){
+            $fetched=mysqli_fetch_array($result_set2);
+
+            $cover = $fetched[7];
+            if($cover != "profile.jpg"){
+                $coverdir = "../uploads";
+                unlink($coverdir."/".$cover);
+            }
+        }
+
         $file = rand(1000,100000)."-".$_FILES['prof_pic']['name'];
         $file_loc = $_FILES['prof_pic']['tmp_name'];
         $file_size = $_FILES['prof_pic']['size'];
