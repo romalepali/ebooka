@@ -10,7 +10,7 @@
     <body>
         <div class="right">
             <form action="search.php" method="POST">
-                <input name="search" type="search" value="<?php if(isset($_SESSION['search'])){ echo $_SESSION['search'];}?>" placeholder="search an ebook" style="text-align:center;position:relative; margin: 2px auto; width:99%; height:35px;padding:10px; border:none;" required>
+                <input name="search" type="search" value="<?php if(isset($_SESSION['search'])){ echo $_SESSION['search'];}?>" placeholder="search an ebook" style="text-align:center;position:relative; margin: 2px auto; width:99%; height:35px;padding:10px; border:none;">
                 <select name="category" required>
                     <?php
                         $sql_query="SELECT category_id, category_name FROM category";
@@ -82,24 +82,60 @@
             </form>
         </div>
         <div class="right" style="float:right;">
-            <h2>Recent Activity</h2>
+            <h2 style="margin-bottom:0px;">Recent Activity</h2>
+            <h4 style="margin-top:0px;">(Book & Stories)</h4>
             <?php
                 $sql_query="SELECT * FROM activities WHERE user_id=".$_SESSION['user_id']." GROUP BY activity_date DESC";
                 $result_set=mysqli_query($con,$sql_query);
+                $count=0;
                 if(mysqli_num_rows($result_set)>0)
                 {
                     while($row=mysqli_fetch_row($result_set))
                     {
-                        ?>
-                            <div style="position:relative; width:90%; margin:auto; margin-bottom:10px;">
-                                <p style="text-align:center; font-size:18px"><?php echo $row[1];?></p>
-                                <p style="text-align:center; font-size:10px; position:relative; width:100%; bottom:15px;"><?php echo $row[2];?></p>
-                            </div>
-                        <?php
+                        if($count<=5){
+                            ?>
+                                <div style="position:relative; width:90%; margin:auto; margin-bottom:10px;">
+                                    <p style="text-align:center; font-size:18px"><?php echo $row[1];?></p>
+                                    <p style="text-align:center; font-size:10px; position:relative; width:100%; bottom:15px;"><?php echo $row[2];?></p>
+                                </div>
+                            <?php
+                        }
+                        $count++;
                     }
                 }
-                else
-                {
+                else{
+                    ?>
+                        No updates yet!
+                    <?php
+                }
+            ?>
+
+            <hr>
+
+            <h2 style="margin-bottom:0px;">Recent Activity</h2>
+            <h4 style="margin-top:0px;">(Categories)</h4>
+            <?php
+                if($_SESSION['user_type']=='Administrator'){
+                    $sql_query="SELECT * FROM category_activity GROUP BY activity_date DESC";
+                    $result_set=mysqli_query($con,$sql_query);
+                    $count2=0;
+                    if(mysqli_num_rows($result_set)>0)
+                    {
+                        while($row=mysqli_fetch_row($result_set))
+                        {
+                            if($count2<=5){
+                                ?>
+                                    <div style="position:relative; width:90%; margin:auto; margin-bottom:10px;">
+                                        <p style="text-align:center; font-size:18px"><?php echo $row[1];?></p>
+                                        <p style="text-align:center; font-size:10px; position:relative; width:100%; bottom:15px;"><?php echo $row[2];?></p>
+                                    </div>
+                                <?php
+                            }
+                            $count2++;
+                        }
+                    }
+                }
+                else{
                     ?>
                         No updates yet!
                     <?php

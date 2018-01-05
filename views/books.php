@@ -50,7 +50,7 @@
         <script src="../js/loader.js"></script>
         <script src="../js/account.js"></script>
         <script src="../js/books.js"></script>
-        <script src="../js/inpagesearch.js"></script>
+        <script src="../js/shared.js"></script>
         <title>Books</title>
     </head>
 
@@ -72,7 +72,9 @@
         .details {
             margin: 2px;
         }
-
+        .share {
+            margin: 2px;
+        }
         .apbut {
             color:white;
             background-color:rgb(0, 94, 201);
@@ -85,14 +87,10 @@
             padding: 0;
             margin: 0;
         }
-        #myInput {
-            background-image: url('../images/search.png');
-            background-position: 10px 12px;
-            background-size:20px;
-            background-repeat: no-repeat;
+        #mySelect {
             width: 99%;
             font-size: 16px;
-            padding: 12px 20px 12px 40px;
+            padding: 12px 20px 12px 12px;
             border: 1px solid #ddd;
             margin-bottom: 12px;
             text-align:left;
@@ -108,12 +106,18 @@
                     <div style="overflow:hidden;">
                         <div class="main">
                             <h1 style="text-align:center;">All Books</h1>
-                            <input type="text" id="myInput" onkeyup="search()" placeholder="search a book">
+                            
+                            <select id="mySelect" onchange="shared()">
+                                <option value="">All</option>
+                                <option value="Private">Private</option>
+                                <option value="Public">Public</option>
+                            </select>
+
                             <div id="bydate" style="margin:auto; margin-bottom:20px; width:100%; padding:5px;">
                                 <div style="overflow-y:scroll; height:393px; background-color:whitesmoke;box-shadow: 0px 0px 5px;">
                                     <ul id="myUL">
                                         <?php
-                                            $sql_query="SELECT a.*,b.category_name FROM books a INNER JOIN category b ON a.book_category_id=b.category_id WHERE a.user_id=".$_SESSION['user_id']." GROUP BY book_date DESC";
+                                            $sql_query="SELECT a.*,b.category_name FROM books a INNER JOIN category b ON a.book_category_id=b.category_id WHERE a.user_id=".$_SESSION['user_id']." GROUP BY book_title ASC";
                                             $result_set=mysqli_query($con,$sql_query);
                                             if(mysqli_num_rows($result_set)>0)
                                             {
@@ -126,7 +130,10 @@
                                                                     <img class="bookimage" src="covers/<?php echo $row[6];?>" style="height:180px;width:130px;">
                                                                 </a>
                                                                 <div class="details">
-                                                                    <?php echo $row[1];?>
+                                                                    <b><?php echo $row[1];?></b>
+                                                                </div>
+                                                                <div class="share">
+                                                                    (<?php echo $row[8];?>)
                                                                 </div>
                                                                 <button class="apbut" onclick="javascript: vbook_id('<?php echo $row[0];?>')">view</button>
                                                                 <button class="apbut" onclick="javascript: ubook_id('<?php echo $row[0];?>')">update</button>

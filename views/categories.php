@@ -77,7 +77,7 @@
         <script src="../js/loader.js"></script>
         <script src="../js/account.js"></script>
         <script src="../js/categories.js"></script>
-        <script src="../js/inpagesearch.js"></script>
+        <script src="../js/searchcat.js"></script>
         <title>Categories</title>
     </head>
 
@@ -113,13 +113,9 @@
             margin: 0;
         }
         #myInput {
-            background-image: url('../images/search.png');
-            background-position: 10px 12px;
-            background-size:20px;
-            background-repeat: no-repeat;
             width: 99%;
             font-size: 16px;
-            padding: 12px 20px 12px 40px;
+            padding: 12px 20px 12px 12px;
             border: 1px solid #ddd;
             margin-bottom: 12px;
             text-align:left;

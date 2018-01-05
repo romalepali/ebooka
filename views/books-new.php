@@ -28,7 +28,7 @@
 
         if(move_uploaded_file($file_loc,$folder_file.$final_file))
         {
-            $sql_query = "INSERT INTO books (book_title,book_description,book_author,book_category_id,book_file,book_cover,book_date,upload_type,user_id) VALUES ('$book_title','$book_description','$book_author','$book_category_id','$final_file','$final_cover',NOW(),'$upload_type','$user_id')";
+            $sql_query = "CALL insert_books('$book_title','$book_description','$book_author','$book_category_id','$final_file','$final_cover','$upload_type','$user_id')";
             if(mysqli_query($con,$sql_query))
             {
                 ?>

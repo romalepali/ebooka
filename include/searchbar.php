@@ -11,7 +11,7 @@
     <body>
         <div class="right" style="width:100%;">
             <form action="search.php" method="POST">
-                <input name="search" type="search" placeholder="search an ebook" style="text-align:center;position:relative; margin: 5px auto; width:99%; height:35px;padding:10px; border:none;" required>
+                <input name="search" type="search" placeholder="search an ebook" style="text-align:center;position:relative; margin: 5px auto; width:99%; height:35px;padding:10px; border:none;">
                 <select name="category" required>
                     <?php
                         $sql_query="SELECT category_id, category_name FROM category";

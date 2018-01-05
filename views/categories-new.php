@@ -11,7 +11,7 @@
         $category_name = $_POST['category_name'];
         $final_cover="default_cover.jpg";
 
-        $sql_query = "INSERT INTO category (category_name,category_cover) VALUES ('$category_name','$final_cover')";
+        $sql_query = "CALL insert_category('$category_name','$final_cover')";
         if(mysqli_query($con,$sql_query))
         {
             ?>

@@ -131,7 +131,7 @@
         <div class="main" style="width:100%;">
             <img src="images/logo.png" width="150px">
             <form action="search.php" method="POST">
-                <input type="search" name="search" value="<?php if(isset($_SESSION['search'])){ echo $_SESSION['search'];}?>" placeholder="search an ebook" style="width:75%;height:50px;padding:5px;text-align:center;font-size:22px;" required><br>
+                <input type="search" name="search" value="<?php if(isset($_SESSION['search'])){ echo $_SESSION['search'];}?>" placeholder="search an ebook" style="width:75%;height:50px;padding:5px;text-align:center;font-size:22px;"><br>
                 <select name="category" required>
                     <?php
                         $sql_query="SELECT category_id, category_name FROM category";
@@ -215,7 +215,13 @@
                                     <img class="bookimage" src="views/covers/<?php echo $row[6];?>" style="height:180px;width:130px;">
                                 </a>
                                 <div class="details">
-                                    <?php echo $row[1];?>
+                                    <b><?php echo $row[1];?></b>
+                                </div>
+                                <div class="details">
+                                    <?php echo "by ".$row[3];?>
+                                </div>
+                                <div class="details">
+                                    (Book)
                                 </div>
                                 <button class="apbut" onclick="javascript: vbook_id('<?php echo $row[0];?>')">view</button>
                             </div>
@@ -230,7 +236,13 @@
                                     <img class="bookimage" src="views/covers/<?php echo $row2[7];?>" style="height:180px;width:130px;">
                             </a>
                                 <div class="details">
-                                    <?php echo $row2[1];?>
+                                    <b><?php echo $row2[1];?></b>
+                                </div>
+                                <div class="details">
+                                    <?php echo "by ".$row2[6];?>
+                                </div>
+                                <div class="details">
+                                    (Story)
                                 </div>
                                 <button class="apbut" onclick="javascript: vstory_id('<?php echo $row2[0];?>')">view</button>
                             </div>

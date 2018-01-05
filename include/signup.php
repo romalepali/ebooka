@@ -29,13 +29,13 @@
                 <?php
             }
             else{
-                $sql_query = "INSERT INTO users (user_uname,user_pword,user_fname,user_mname,user_lname,user_gender,user_profile,user_date_created) VALUES ('$user_uname','$pword','$fname','$mname','$lname','$gender','profile.jpg',NOW())";
+                $sql_query = "CALL insert_users('$user_uname','$pword','$fname','$mname','$lname','$gender','profile.jpg','Standard')";
 
                 if(mysqli_query($con,$sql_query))
                 {
                     ?>
                         <script type="text/javascript">
-                            alert('Successfully created your account, please verify it to the administrator!');
+                            alert('Successfully created your account!');
                             window.location.href='index.php';
                         </script>
                     <?php

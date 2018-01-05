@@ -17,7 +17,7 @@
         $post_type = $_POST['post_type'];
         $final_cover="default_cover.jpg";
 
-        $sql_query = "INSERT INTO posts (post_title,post_text,post_author,post_category_id,post_cover,post_date,post_type,post_description,user_id) VALUES ('$post_title','$post_text','$post_author','$post_category_id','$final_cover',NOW(),'$post_type','$post_description','$user_id')";
+        $sql_query = "CALL insert_posts('$post_title','$post_text','$post_type','$post_category_id','$post_author','$final_cover','$post_description','$user_id')";
         if(mysqli_query($con,$sql_query))
         {
             ?>
