@@ -28,7 +28,7 @@ CREATE TABLE `activities` (
   `activity_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`activity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `activities` (
 
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
-INSERT INTO `activities` VALUES (1,'A new story is posted','2018-01-04 20:31:45',1),(2,'A new story is posted','2018-01-04 20:32:19',1),(3,'A new book is inserted','2018-01-04 20:34:23',1),(4,'A new book is inserted','2018-01-04 21:23:50',1),(5,'A story is updated','2018-01-05 01:13:27',1),(6,'A story is updated','2018-01-05 05:33:12',1),(7,'A story is updated','2018-01-05 05:33:54',1),(8,'A story is updated','2018-01-05 05:34:10',1),(9,'A book has been updated','2018-01-05 05:34:33',1),(10,'A book has been updated','2018-01-05 05:34:56',1),(11,'A book has been updated','2018-01-05 05:36:35',1),(12,'A new book is inserted','2018-01-05 19:53:58',1),(13,'A new story is posted','2018-01-05 20:08:58',1),(14,'New user is added','2018-01-05 20:27:22',4);
+INSERT INTO `activities` VALUES (1,'A new story is posted','2018-01-04 20:31:45',1),(2,'A new story is posted','2018-01-04 20:32:19',1),(3,'A new book is inserted','2018-01-04 20:34:23',1),(4,'A new book is inserted','2018-01-04 21:23:50',1),(5,'A story is updated','2018-01-05 01:13:27',1),(6,'A story is updated','2018-01-05 05:33:12',1),(7,'A story is updated','2018-01-05 05:33:54',1),(8,'A story is updated','2018-01-05 05:34:10',1),(9,'A book has been updated','2018-01-05 05:34:33',1),(10,'A book has been updated','2018-01-05 05:34:56',1),(11,'A book has been updated','2018-01-05 05:36:35',1),(12,'A new book is inserted','2018-01-05 19:53:58',1),(13,'A new story is posted','2018-01-05 20:08:58',1),(14,'New user is added','2018-01-05 20:27:22',4),(15,'A book has been updated','2018-01-05 23:51:35',1),(16,'A book has been updated','2018-01-05 23:59:12',1);
 /*!40000 ALTER TABLE `activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +69,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (1,'Hey','Hey','rolleenao',3,'89186-hey','default_cover.jpg','2018-01-05 05:36:35','Public',1),(2,'Char','Xhar','rolleenao',2,'9611-char','default_cover.jpg','2018-01-05 05:34:56','Public',1),(3,'Go','Go','rolleenao',3,'23171-go','default_cover.jpg','2018-01-05 19:53:58','Public',1);
+INSERT INTO `books` VALUES (1,'Hey','Hey','rolleenao',4,'89186-hey','default_cover.jpg','2018-01-05 23:59:12','Public',1),(2,'Char','Xhar','rolleenao',3,'9611-char','default_cover.jpg','2018-01-05 23:51:35','Public',1),(3,'Go','Go','rolleenao',3,'23171-go','default_cover.jpg','2018-01-05 19:53:58','Public',1);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -439,6 +439,41 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Temporary table structure for view `view_category`
+--
+
+DROP TABLE IF EXISTS `view_category`;
+/*!50001 DROP VIEW IF EXISTS `view_category`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `view_category` (
+  `category_id` tinyint NOT NULL,
+  `category_name` tinyint NOT NULL,
+  `category_cover` tinyint NOT NULL,
+  `date_modified` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `view_category`
+--
+
+/*!50001 DROP TABLE IF EXISTS `view_category`*/;
+/*!50001 DROP VIEW IF EXISTS `view_category`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_category` AS select `category`.`category_id` AS `category_id`,`category`.`category_name` AS `category_name`,`category`.`category_cover` AS `category_cover`,`category`.`date_modified` AS `date_modified` from `category` where (`category`.`category_id` <> 1) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -449,4 +484,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-06  7:32:17
+-- Dump completed on 2018-01-06  8:00:43
